@@ -1,73 +1,106 @@
 const Question_Data = [
     {
      question: "Qu'est-ce que Java ?",
-     a: "Un système d'exploitation",
-     b: "Un langage de programmation",
-     c: "Un navigateur web",
-     d: "Un framework JavaScript",
-     correct: "b"
-    },
-     {
-     question: "Quelle est la méthode principale (point d'entrée) dans une application Java ?",
-     a: "main()",
-     b: "start()",
-     c: "execute()",
-     d: "run()",
-     correct: "a" 
+     r:[  "Un système d'exploitation","Un langage de programmation","Un navigateur web", "Un framework JavaScript"],
+     correct: "Un langage de programmation"
     },
      {
      question: "Comment déclarer une variable en Java ?",
-     a: "var myVariable = 10;",
-     b: "let myVariable = 10;",
-     c: "int myVariable = 10;",
-     d: "myVariable = 10;",
-     correct: "c"
+     r:[  "var myVariable = 10;","let myVariable = 10;","int myVariable = 10;","myVariable = 10;"],
+     correct: "int myVariable = 10;"
     },
      {
      question: "Quel mot-clé est utilisé pour hériter d'une classe en Java ?",
-     a: "extend",
-     b: "inherits",
-     c: "implements",
-     d: "super",
-     correct: "a"
+     r:["extend","inherits","implements","super"],
+     correct: "extend"
     },
      {
      question: "Comment importer une classe dans Java ?",
-     a: "import MyClass;",
-     b: "include MyClass;",
-     c: "require MyClass;",
-     d: "import java.MyClass;",
-     correct: "d"
-    },
-     {
-     question: "Quelle est la différence entre == et .equals() en Java ?",
-     a: "Ils font la même chose",
-     b: "== compare les valeurs, .equals() compare les références d'objet",
-     c: ".equals() compare les valeurs, == compare les références d'objet",
-     d: "== est utilisé pour les entiers, .equals() pour les chaînes de caractères",
-     correct: "c"
+     r:["import MyClass;","include MyClass;","require MyClass;", "import java.MyClass;"],
+     correct: "import java.MyClass;"
     },
      {
      question: "Comment déclarer un tableau (array) en Java ?",
-     a: "array myArray = new array();",
-     b: "int[] myArray = new int[];",
-     c: "int[] myArray = new int[] {};",
-     d: "int[] myArray = new int[5];",
-     correct: "d"
+     r:[ "array myArray = new array();","int[] myArray = new int[];","int[] myArray = new int[] {};","int[] myArray = new int[5];"],
+     correct: "int[] myArray = new int[5];"
     },
      {
      question: "Comment terminer une instruction en Java ?",
-     a: "Avec un point-virgule ;",
-     b: "Avec un point .",
-     c: "Avec une virgule ,",
-     d: "Avec un deux-points :",
-     correct: "a"
+    r:["Avec un point-virgule ;","Avec un point .","Avec une virgule ,","Avec un deux-points :"],
+     correct: "Avec un point-virgule ;"
     },
    
    ];
-   
-   
 
+   const question = document.getElementById("Q");
+   const container = document.getElementById("case1");
+   let i = 0;
+   let valider = document.getElementById("submit-btn");
+
+function showData(){
+    question.innerHTML = Question_Data[i].question;
+    for(let j = 0; j < Question_Data[i].r.length; j++){
+        container.innerHTML += `
+        <button id="A" class="A">${Question_Data[i].r[j]}</button>
+        `
+        
+    }
+    valider.disabled = true;
+} 
+showData();
+
+function ChangeData(){
+   
+        valider.addEventListener("click",function(){
+           nextQuestions();
+           checkData();
+        })
+    }
+
+ChangeData();
+
+    
+
+function nextQuestions(){
+    container.innerHTML =""; 
+    i++;
+    showData();
+}
+let score = document.getElementById("score");
+let sc = 0;
+let valid = false;
+
+function checkData(){
+
+        document.querySelectorAll(".A").forEach((element)=>{
+            element.addEventListener("click", () =>{
+                if(element.innerHTML == Question_Data[i].correct){
+                    valider.disabled = false;
+                    element.style.background = "green"
+                    element.style.color =" white"
+                    element.disabled = true;
+                    sc +=10;
+                    score.innerHTML = "Score: " + sc;
+                    document.querySelectorAll(".A").forEach((e)=>{
+                        if(e.style.background != "green"){
+                            e.disabled = true;
+
+                        }
+                    })
+                }else{
+                    element.style.background = "red"
+                    element.style.color =" white"
+                    document.querySelectorAll(".A").forEach((e)=>{
+                        if(e.style.background != "red"){
+                            e.disabled = true;
+                            valider.disabled = false;
+                        }
+                    })
+                }
+            })
+        })
+}
+checkData();
 
 
 
