@@ -15,13 +15,14 @@ body {
     flex-direction: column;
     gap: 19px;
     padding-left: 25px;
-    max-width: 1200px;
+   
 }
 
 header {
     background-color: #e4e3ebd2;
     color: #fff;
     padding: 20px 0;
+    width: 100%;
 }
 
 .logo {
@@ -157,14 +158,14 @@ h2 {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    text-decoration: none; /* remove underline from text */
+    text-decoration: none;
     font-weight: bold;
     margin: 4px;
 
 }
 #A:hover{
-    transform: scale(1.03); /* zoom in slightly on hover */
-    transition: transform 0.2s ease-in-out; /* smooth transition */
+    transform: scale(1.03);
+    transition: transform 0.2s ease-in-out;
     background-color:#ffd340;;
 }
 .quiz-button{
@@ -184,6 +185,7 @@ h2 {
 .button{
     display: flex;
     justify-content: flex-end;
+
 }
 #submit-btn {
     padding: 10px 20px;
@@ -193,11 +195,12 @@ h2 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 #submit-btn:hover {
-    background-color: #0056b3;
+    background: linear-gradient(to right, #2980b9, #5db1f3);
+    color: white;
+
 }
 
 
@@ -266,5 +269,64 @@ footer p{
     
 
   }
+  @media  (max-width: 600px)
+  {
+    #A {
+        width: 94%;
+        font-size: 10px;
+    }
+    #score {
+        font-size: 10px;
+    }
+    h1 {
+        font-size: 18px;
+    }
+    .score-icon img{
+        width: 20px;
+        height: 22px;
+    }
+  }
   
   
+ /*  @media  (max-width: 600px) {
+    .div-logo {
+        flex-direction: column;
+        gap: 10px;
+        padding-left: 15px;
+    }
+    header {
+        padding: 15px 0;
+    }
+    .logo i {
+        font-size: 28px;
+    }
+    nav ul {
+        gap: 12px;
+    }
+    .container {
+        margin: 10% 10% 20% 10%;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .container > #question {
+        font-size: 16px;
+    }
+    #A {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+    footer {
+        padding: 20px;
+    }
+    footer .media .card img {
+        width: 24px;
+        height: 24px;
+    }
+    footer p {
+        font-size: 8px;
+    }
+} */
