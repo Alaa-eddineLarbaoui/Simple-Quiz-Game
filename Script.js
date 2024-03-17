@@ -59,13 +59,19 @@ function ChangeData(){
 
 ChangeData();
 
-    
+
 
 function nextQuestions(){
-    container.innerHTML =""; 
-    i++;
-    showData();
+    container.innerHTML ="";
+    i++; // Incrémente i après l'affichage de la nouvelle question
+    if (i < Question_Data.length) {
+        showData();
+    } else {
+        showScore();
+    }
 }
+
+
 let score = document.getElementById("score");
 let sc = 0;
 let valid = false;
@@ -102,7 +108,27 @@ function checkData(){
 }
 checkData();
 
+function showScore() {
+    container.innerHTML = "";
+    question.innerHTML = "Félicitations! Vous avez terminé le quiz!";
+    score.innerHTML = "Score final: " + sc;
+    valider.disabled = true;
+    restartButton.style.display = "block";
+    valider.style.display= "none";
+}
 
+function restartQuiz() {
+    i = 0;
+    sc = 0;
+    showData();
+    restartButton.style.display = "none"
+    checkData();
+}
+const restartButton = document.getElementById("restartButton");
+
+restartButton.addEventListener("click", function() {
+    restartQuiz();
+});
 
 
 
